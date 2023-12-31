@@ -2,7 +2,7 @@ import Image from "next/image";
 
 export const About = () => {
   return (
-    <section className="flex h-screen flex-col-reverse lg:flex-row">
+    <section className="mx-auto flex w-4/5 flex-col-reverse lg:flex-row">
       <div className="p-12 lg:flex-1">
         <Image
           src="/unSplash/DoughMaking.jpg"
@@ -13,7 +13,7 @@ export const About = () => {
         />
       </div>
       <div className="text-center lg:flex-1 lg:p-8">
-        <div className="bg-gray-400">
+        <div className="bg-gray-400 pt-6">
           <div className="mb-4 text-3xl font-bold">About us</div>
           <p className="text-lg">
             Your about us text goes here. Provide information about your company

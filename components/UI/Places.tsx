@@ -2,7 +2,7 @@ import Image from "next/image";
 
 export const Places = () => {
   return (
-    <section className="flex h-screen flex-col-reverse lg:flex-row">
+    <section className="mx-auto flex h-screen w-4/5 flex-col-reverse lg:flex-row">
       <div className="text-center lg:flex-1 lg:p-8">
         <div className="bg-gray-400">
           <div className="mb-4 text-3xl font-bold">About us</div>
@@ -23,17 +23,7 @@ export const Places = () => {
             repellat. Ullam asperiores necessitatibus nam molestias aperiam
             cupiditate aspernatur possimus rem adipisci exercitationem ipsam,
             consequuntur earum magni laborum, incidunt voluptatem nobis
-            quibusdam, odit vitae commodi omnis ex. Ullam iste ea numquam
-            consequatur at ipsa, rem labore natus, explicabo qui, praesentium
-            quas odit cum perferendis hic minima sapiente. Quaerat nobis rem
-            maiores placeat, commodi iste voluptatibus delectus tenetur atque,
-            consequatur perferendis repudiandae, expedita cum dolorum vero
-            aspernatur minima minus reprehenderit quo repellendus provident
-            distinctio eveniet assumenda! Unde cupiditate magni adipisci ratione
-            ea enim aperiam expedita at laborum odit tempore temporibus,
-            similique blanditiis dolorem nesciunt fugiat? Inventore eligendi,
-            necessitatibus praesentium magnam non sit ullam cum eveniet itaque
-            id omnis nam recusandae fugit,
+            quibusdam,
           </p>
         </div>
       </div>

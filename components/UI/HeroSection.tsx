@@ -29,9 +29,9 @@ export const HeroSection = () => {
           objectFit="cover"
         />
         {/* TODO: Switching font size depends on a width size screen */}
-        <div className="mb-44 rounded-3xl py-6 text-white backdrop-blur-md transition duration-300 hover:scale-110 xl:w-2/3">
+        {/* <div className="mb-44 rounded-3xl py-6 text-white backdrop-blur-md transition duration-300 hover:scale-110 xl:w-2/3">
           <VaraHandwriting text="The best pizza in town!" fontSize={64} />
-        </div>
+        </div> */}
       </div>
     </motion.section>
   );

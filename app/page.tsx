@@ -4,6 +4,7 @@ import { Places } from "@/components/UI/Places";
 // import { Slider } from "@/components/UI/Slider";
 // import { SwiperComponent } from "@/components/UI/SwiperComponent";
 import Image from "next/image";
+import { Gallery } from "../components/UI/Gallery";
 
 export default function Home() {
   return (
@@ -11,6 +12,7 @@ export default function Home() {
       <HeroSection />
       <About />
       <Places />
+      <Gallery />
     </main>
   );
 }

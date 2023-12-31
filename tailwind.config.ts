@@ -8,6 +8,11 @@ const config: Config = {
   ],
   theme: {
     extend: {
+       fontFamily: {
+        // 👇 Add CSS variables
+        inter: ["var(--font-inter)"],
+        kalam: ["var(--font-kalam)"],
+      },
       backgroundImage: {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
         'gradient-conic':

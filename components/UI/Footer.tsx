@@ -1,6 +1,15 @@
+"use client";
+
 import { navigation } from "./FooterNav";
 
 export const Footer = () => {
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  };
+
   return (
     <footer className="bg-red-600">
       <div className="mx-auto max-w-7xl overflow-hidden px-6 py-10 sm:py-12 lg:px-8">
@@ -10,9 +19,12 @@ export const Footer = () => {
         >
           {navigation.main.map((item) => (
             <div key={item.name} className="pb-6">
-              <a href={item.href} className="text-md leading-6 text-white">
+              <button
+                onClick={() => scrollToTop()}
+                className="text-md cursor-pointer leading-6 text-white transition duration-200 hover:text-black"
+              >
                 {item.name}
-              </a>
+              </button>
             </div>
           ))}
         </nav>

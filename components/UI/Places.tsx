@@ -2,7 +2,7 @@ import Image from "next/image";
 
 export const Places = () => {
   return (
-    <section className="mx-auto flex h-screen w-4/5 flex-col-reverse lg:flex-row">
+    <section className="mx-auto flex h-3/5 w-4/5 flex-col-reverse lg:flex-row">
       <div className="text-center lg:flex-1 lg:p-8">
         <div className="bg-gray-400">
           <div className="mb-4 text-3xl font-bold">About us</div>
@@ -32,7 +32,7 @@ export const Places = () => {
           src="/unSplash/Outside.jpg"
           alt="Dough Making"
           width={1200}
-          height={800}
+          height={400}
           className="h-full w-full object-cover"
         />
       </div>

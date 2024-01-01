@@ -14,22 +14,24 @@ export const Navbar = () => {
 
   return (
     <div className="sticky top-0 z-50 flex h-[100px] items-center justify-between bg-red-600 px-8 py-8">
-      <div className=" flex items-center">
-        <div className="rounded-full bg-white p-2">
-          <Image
-            src="/img/telephone.png"
-            alt="telephone"
-            width={32}
-            height={32}
-          />
+      <div className="hidden items-center 2xl:flex ">
+        <div className="absolute left-6">
+          <div className="rounded-full bg-white p-2">
+            <Image
+              src="/img/telephone.png"
+              alt="telephone"
+              width={32}
+              height={32}
+            />
+          </div>
         </div>
-        <div className="ml-6 text-white">
+        <div className="ml-12 text-white">
           <div className="font-medium">ORDER NOW!</div>
           <div className="text-2xl font-semibold">123-456-789-007</div>
         </div>
       </div>
-      <div>
-        <ul className="flex items-center gap-8 font-kalam text-xl text-white">
+      <div className="flex flex-grow justify-center">
+        <ul className="flex items-center gap-8 font-kalam text-xl text-white 2xl:-ml-64">
           {navigationItems.slice(0, middleIndex).map((item, index) => (
             <li
               key={index}
@@ -38,13 +40,15 @@ export const Navbar = () => {
               <Link href={item.link}>{item.title}</Link>
             </li>
           ))}
-          <Image
-            src="/img/logo.png"
-            alt="logo"
-            width={160}
-            height={69}
-            className="cursor-pointer transition hover:scale-110"
-          />
+          <Link href={"/"}>
+            <Image
+              src="/img/logo.png"
+              alt="logo"
+              width={160}
+              height={69}
+              className="cursor-pointer transition hover:scale-110"
+            />
+          </Link>
           {navigationItems.slice(middleIndex).map((item, index) => (
             <li
               key={middleIndex + index}
@@ -55,19 +59,16 @@ export const Navbar = () => {
           ))}
         </ul>
       </div>
-      <div>
-        {/* // TODO: Add the relativeness for that cart count */}
-        <div className="relative">
-          <Image
-            src="/img/cart.png"
-            alt="cart"
-            width={30}
-            height={30}
-            className="cursor-pointer transition hover:scale-110"
-          />
-          <div className="absolute right-0 top-0 h-20 w-20 pb-2 pl-8 text-white">
-            10
-          </div>
+      <div className="relative">
+        <Image
+          src="/img/cart.png"
+          alt="cart"
+          width={30}
+          height={30}
+          className="cursor-pointer transition hover:scale-110"
+        />
+        <div className="absolute right-0 top-0 h-20 w-20 pb-2 pl-8 text-white">
+          10
         </div>
       </div>
     </div>

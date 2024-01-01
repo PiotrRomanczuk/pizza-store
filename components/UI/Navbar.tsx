@@ -1,5 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
+import { Suspense } from "react";
 
 export const Navbar = () => {
   const navigationItems = [
@@ -59,18 +60,11 @@ export const Navbar = () => {
           ))}
         </ul>
       </div>
-      <div className="relative">
-        <Image
-          src="/img/cart.png"
-          alt="cart"
-          width={30}
-          height={30}
-          className="cursor-pointer transition hover:scale-110"
-        />
-        <div className="absolute right-0 top-0 h-20 w-20 pb-2 pl-8 text-white">
-          10
-        </div>
-      </div>
+
+      <div>Cart</div>
+      {/* <Suspense fallback={<OpenCart />}>
+          <Cart />
+        </Suspense> */}
     </div>
   );
 };

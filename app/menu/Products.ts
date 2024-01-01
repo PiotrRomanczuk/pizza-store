@@ -1,10 +1,12 @@
 export interface IProduct {
-    id: number;
-    name: string;
-    nameLowerCase: string;
-    price: number;
-    description: string;
-    ingredients?:string[] 
+  id: number;
+  name: string;
+  nameLowerCase: string;
+  price: number;
+    imgSrc: string;
+    imgAlt: string;
+  description: string;
+  ingredients?: string[];
 }
 
 export const Products: IProduct[] = [
@@ -13,6 +15,8 @@ export const Products: IProduct[] = [
         name: "Margherita",
         nameLowerCase: "margherita",
         price: 11.99,
+        imgSrc: "/dominos/margherita.png",
+        imgAlt: 'margherita',
         description: "plain pizza",
         ingredients: ["tomato", "mozzarella", "basil"]
     },
@@ -21,6 +25,8 @@ export const Products: IProduct[] = [
         name: "Prosciutto",
         nameLowerCase: "prosciutto",
         price: 12.99,
+        imgSrc: "/dominos/capriciosa.png",
+        imgAlt: 'capriciosa',
         description: "Ham and cheese",
         ingredients: ["tomato", "mozzarella", "basil", "prosciutto"]
     },
@@ -28,7 +34,9 @@ export const Products: IProduct[] = [
         id: 3,
         name: "Salami",
         nameLowerCase: "salami",
-        price: 13.99,
+        price: 13.99, 
+        imgSrc: "/dominos/pepperoni.png",
+        imgAlt: 'pepperoni',
         description: "Salami and cheese",
         ingredients: ["tomato", "mozzarella", "basil", "salami"]
     }

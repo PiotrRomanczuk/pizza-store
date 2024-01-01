@@ -2,14 +2,14 @@ import Image from "next/image";
 
 export const About = () => {
   return (
-    <section className="mx-auto flex w-4/5 flex-col-reverse lg:flex-row">
-      <div className="p-12 lg:flex-1">
+    <section className="mx-auto flex h-3/5 w-4/5 flex-col-reverse lg:flex-row">
+      <div className=" p-12 lg:flex-1">
         <Image
           src="/unSplash/DoughMaking.jpg"
           alt="Dough Making"
           width={1200}
           height={800}
-          className="h-full w-full object-cover"
+          className="h-full w-full rounded-3xl object-cover"
         />
       </div>
       <div className="text-center lg:flex-1 lg:p-8">

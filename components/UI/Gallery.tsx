@@ -27,7 +27,15 @@ export const Gallery = () => {
           />
         </div>
         <div className="flex items-center justify-center bg-red-700 text-center">
-          <VaraHandwriting text="We are here for you!" fontSize={32} />
+          {/* <VaraHandwriting
+            text="We are here for you"
+            fontSize={24}
+            fontUrl="https://raw.githubusercontent.com/akzhy/Vara/master/fonts/Satisfy/SatisfySL.json"
+            strokeWidth={1.8}
+            textAlign="center"
+            containerId="vara-container-1"
+            zIndex={20}
+          /> */}
         </div>
         <div className="relative row-span-1 bg-violet-100 md:row-span-2">
           <Image

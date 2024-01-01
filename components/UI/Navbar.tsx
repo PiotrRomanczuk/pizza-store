@@ -1,18 +1,19 @@
+import Link from "next/link";
 import Image from "next/image";
 
 export const Navbar = () => {
   const navigationItems = [
-    "Homepage",
-    "Products",
-    "Menu",
-    "Events",
-    "Blog",
-    "Contact",
+    { title: "Homepage", link: "/" },
+    { title: "Products", link: "/products" },
+    { title: "Menu", link: "/menu" },
+    { title: "Events", link: "/events" },
+    { title: "Blog", link: "/blog" },
+    { title: "Contact", link: "/contact" },
   ];
   const middleIndex = Math.ceil(navigationItems.length / 2);
 
   return (
-    <div className="h-{100px} sticky top-0 z-50 flex items-center justify-between bg-red-600 px-8 py-8">
+    <div className="sticky top-0 z-50 flex h-[100px] items-center justify-between bg-red-600 px-8 py-8">
       <div className=" flex items-center">
         <div className="rounded-full bg-white p-2">
           <Image
@@ -24,7 +25,7 @@ export const Navbar = () => {
         </div>
         <div className="ml-6 text-white">
           <div className="font-medium">ORDER NOW!</div>
-          <div className="text-2xl font-semibold">612 313 817</div>
+          <div className="text-2xl font-semibold">123-456-789-007</div>
         </div>
       </div>
       <div>
@@ -34,7 +35,7 @@ export const Navbar = () => {
               key={index}
               className="cursor-pointer transition duration-200 hover:text-black"
             >
-              {item}
+              <Link href={item.link}>{item.title}</Link>
             </li>
           ))}
           <Image
@@ -49,7 +50,7 @@ export const Navbar = () => {
               key={middleIndex + index}
               className="cursor-pointer transition duration-200 hover:text-black"
             >
-              {item}
+              <Link href={item.link}>{item.title}</Link>
             </li>
           ))}
         </ul>
@@ -60,11 +61,11 @@ export const Navbar = () => {
           <Image
             src="/img/cart.png"
             alt="cart"
-            width={50}
-            height={50}
-            className="relative"
+            width={30}
+            height={30}
+            className="cursor-pointer transition hover:scale-110"
           />
-          <div className="absolute right-0 top-0 h-10 w-10 pb-6 pl-20 text-white">
+          <div className="absolute right-0 top-0 h-20 w-20 pb-2 pl-8 text-white">
             10
           </div>
         </div>

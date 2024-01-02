@@ -1,2 +1,3 @@
 export default function Home() {
-  return (<div>Products</div>)}
+  return (<div>ORDER
+  </div>)}

@@ -1,17 +1,22 @@
+"use client";
+
 import Link from "next/link";
 import Image from "next/image";
-import { Suspense } from "react";
+import { Suspense, useState } from "react";
+import CartButton from "../cart/CartButton";
 
 export const Navbar = () => {
   const navigationItems = [
     { title: "Homepage", link: "/" },
-    { title: "Products", link: "/products" },
+    // { title: "Products", link: "/products" },
     { title: "Menu", link: "/menu" },
-    { title: "Events", link: "/events" },
+    // { title: "Events", link: "/events" },
     { title: "Blog", link: "/blog" },
     { title: "Contact", link: "/contact" },
   ];
   const middleIndex = Math.ceil(navigationItems.length / 2);
+
+  const [showModal, setshowModal] = useState(false);
 
   return (
     <div className="sticky top-0 z-50 flex h-[100px] items-center justify-between bg-red-600 px-8 py-8">
@@ -32,7 +37,7 @@ export const Navbar = () => {
         </div>
       </div>
       <div className="flex flex-grow justify-center">
-        <ul className="flex items-center gap-8 font-kalam text-xl text-white 2xl:-ml-64">
+        <ul className="flex items-center gap-8 font-kalam text-xl text-white 2xl:-ml-48">
           {navigationItems.slice(0, middleIndex).map((item, index) => (
             <li
               key={index}
@@ -61,7 +66,9 @@ export const Navbar = () => {
         </ul>
       </div>
 
-      <div>Cart</div>
+      <div>
+        <CartButton onClick={() => {}} />
+      </div>
       {/* <Suspense fallback={<OpenCart />}>
           <Cart />
         </Suspense> */}

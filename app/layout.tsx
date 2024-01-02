@@ -1,40 +1,44 @@
-import type { Metadata } from 'next';
+import type { Metadata } from "next";
 
-import { Inter, Kalam } from 'next/font/google';
+import { Inter, Kalam } from "next/font/google";
 
-import './globals.css';
+import { CartProvider } from "@/context/CartProvider";
 
-import { Navbar } from '@/components/UI/Navbar';
-import { Footer } from '@/components/UI/Footer';
+import "./globals.css";
+
+import { Navbar } from "@/components/UI/Navbar";
+import { Footer } from "@/components/UI/Footer";
 
 const inter = Inter({
-	subsets: ['latin'],
-	variable: '--font-inter',
+  subsets: ["latin"],
+  variable: "--font-inter",
 });
 const kalam = Kalam({
-	subsets: ['latin'],
-	weight: ['300', '400', '700'],
-	display: 'auto',
-	variable: '--font-kalam',
+  subsets: ["latin"],
+  weight: ["300", "400", "700"],
+  display: "auto",
+  variable: "--font-kalam",
 });
 
 export const metadata: Metadata = {
-	title: 'Pizza application',
-	description: 'Website that allows to you order the best pizza to your home!',
+  title: "Pizza application",
+  description: "Website that allows to you order the best pizza to your home!",
 };
 
 export default function RootLayout({
-	children,
+  children,
 }: {
-	children: React.ReactNode;
+  children: React.ReactNode;
 }) {
-	return (
-		<html lang='en'>
-			<body className={`${inter.className} ${kalam.className}`}>
-				<Navbar />
-				{children}
-				<Footer />
-			</body>
-		</html>
-	);
+  return (
+    <html lang="en">
+      <body className={`${inter.className} ${kalam.className}`}>
+        <CartProvider>
+          <Navbar />
+          {children}
+          <Footer />
+        </CartProvider>
+      </body>
+    </html>
+  );
 }

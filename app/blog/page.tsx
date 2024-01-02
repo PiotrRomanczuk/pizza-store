@@ -1,2 +1,5 @@
+import Cart from "@/components/cart/Cart";
+
 export default function Home() {
-  return (<div>Products</div>)}
+  return <div>BLOG</div>;
+}

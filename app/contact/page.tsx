@@ -1,2 +1,2 @@
 export default function Home() {
-  return (<div>Products</div>)}
+  return (<div>CONTACT</div>)}

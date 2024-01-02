@@ -9,7 +9,7 @@ export interface IProduct {
   ingredients?: string[];
 }
 
-export const Products: IProduct[] = [
+export const DummyProducts: IProduct[] = [
     {
         id: 1,
         name: "Margherita",

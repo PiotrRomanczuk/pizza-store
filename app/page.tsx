@@ -5,12 +5,11 @@ import { Gallery } from "../components/UI/Gallery";
 
 import { FadingComponent } from "@/components/FadingComponent";
 
-const components = [About, Places, Gallery];
+const components = [HeroSection, About, Places, Gallery];
 
 export default function Home() {
   return (
     <main>
-      <HeroSection />
       {components.map((Component, index) => (
         <FadingComponent key={index}>
           <Component />

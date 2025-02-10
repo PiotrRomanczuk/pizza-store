@@ -14,7 +14,7 @@ export const VaraHandwriting = ({
 }) => {
   useEffect(() => {
     var vara = new Vara(
-      "#vara-container",
+      `#${divID}`,
       "https://raw.githubusercontent.com/akzhy/Vara/master/fonts/Satisfy/SatisfySL.json",
       [
         {
@@ -27,5 +27,5 @@ export const VaraHandwriting = ({
     );
   }, []);
 
-  return <div id="divId" className="z-[20]"></div>;
+  return <div id={divID} className="z-[20]"></div>;
 };

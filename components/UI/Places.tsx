@@ -29,7 +29,7 @@ export const Places = () => {
       </div>
       <div className="p-12 lg:flex-1">
         <Image
-          src="/unSplash/Outside.jpg"
+          src="/unSplash/mainPage/Outside.jpg"
           alt="Dough Making"
           width={1200}
           height={400}

@@ -5,7 +5,7 @@ export const About = () => {
     <section className="mx-auto flex h-3/5 w-4/5 flex-col-reverse lg:flex-row">
       <div className=" p-12 lg:flex-1">
         <Image
-          src="/unSplash/DoughMaking.jpg"
+          src="/unSplash/mainPage/DoughMaking.jpg"
           alt="Dough Making"
           width={1200}
           height={800}

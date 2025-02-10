@@ -22,7 +22,7 @@ export const HeroSection = () => {
       <div className="flex h-screen items-center justify-center">
         <div className="relative h-full w-full">
           <Image
-            src="/unSplash/CookedFood.jpg"
+            src="/unSplash/mainPage/CookedFood.jpg"
             alt="Cooked Food"
             layout="fill"
             objectFit="cover"

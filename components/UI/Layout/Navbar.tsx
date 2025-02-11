@@ -4,6 +4,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { Suspense, useState } from "react";
 import CartButton from "@/components/Cart/CartButton";
+import CartModal from "@/components/Cart/CartModal";
 
 export const Navbar = () => {
   const navigationItems = [
@@ -67,11 +68,14 @@ export const Navbar = () => {
       </div>
 
       <div>
-        <CartButton onClick={() => {}} />
+        <CartButton onClick={() => {
+          setshowModal(true);
+        }} />
       </div>
       {/* <Suspense fallback={<OpenCart />}>
           <Cart />
         </Suspense> */}
+        {showModal && <CartModal />}
     </div>
   );
 };

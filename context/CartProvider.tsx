@@ -40,6 +40,11 @@ export const CartProvider: React.FC<CartProviderProps> = ({ children }) => {
     }
   }, []);
 
+  // Save cart items to localStorage whenever they change
+  useEffect(() => {
+    localStorage.setItem("cartItems", JSON.stringify(cartItems));
+  }, [cartItems]);
+
   const addToCart = (item: ICartItem) =>
     addToCartAction(item, cartItems, setCartItems);
 
@@ -49,13 +54,6 @@ export const CartProvider: React.FC<CartProviderProps> = ({ children }) => {
   const clearCart = () => clearCartAction(setCartItems);
 
   const getCartTotal = () => getCartTotalAction(cartItems);
-
-  useEffect(() => {
-    const cartItemsString = localStorage.getItem("cartItems");
-    if (cartItemsString) {
-      localStorage.setItem("cartItems", JSON.stringify(cartItems));
-    }
-  }, [cartItems]);
 
   return (
     <CartContext.Provider

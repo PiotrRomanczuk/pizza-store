@@ -1,4 +1,3 @@
-
 import { ICartActions } from "@/interfaces/ICartActions";
 import { ProductDisplay } from "@/components/UI/Menu/ProductDisplay";
 import { CartActions } from "./CartActions";
@@ -10,13 +9,17 @@ export const ProductCard: React.FC<IProductCard> = ({
   removeFromCart,
   cartItems,
 }) => {
+  const handleRemoveFromCart = () => {
+    removeFromCart(product);
+  };
+
   return (
     <div className="rounded-lg bg-white px-10 py-10 shadow-md">
       <ProductDisplay product={product} />
       <CartActions
         product={product}
         addToCart={addToCart}
-        removeFromCart={removeFromCart}
+        removeFromCart={handleRemoveFromCart}
         cartItems={cartItems}
       />
     </div>

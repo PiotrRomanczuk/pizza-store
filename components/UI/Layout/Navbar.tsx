@@ -18,9 +18,10 @@ export const Navbar = () => {
   const middleIndex = Math.ceil(navigationItems.length / 2);
 
   const [showModal, setshowModal] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   return (
-    <div className="sticky top-0 z-50 flex h-[100px] items-center justify-between bg-red-600 px-8 py-8">
+    <div className="sticky top-0 z-50 flex h-[100px] items-center justify-between bg-red-600 px-4 py-8 md:px-8">
       <div className="hidden items-center 2xl:flex ">
         <div className="absolute left-6">
           <div className="rounded-full bg-white p-2">
@@ -37,7 +38,29 @@ export const Navbar = () => {
           <div className="text-2xl font-semibold">123-456-789-007</div>
         </div>
       </div>
-      <div className="flex flex-grow justify-center">
+
+      <button
+        className="text-white lg:hidden"
+        onClick={() => setIsMenuOpen(!isMenuOpen)}
+      >
+        <svg
+          className="h-6 w-6"
+          fill="none"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          strokeWidth="2"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+        >
+          {isMenuOpen ? (
+            <path d="M6 18L18 6M6 6l12 12" />
+          ) : (
+            <path d="M4 6h16M4 12h16M4 18h16" />
+          )}
+        </svg>
+      </button>
+
+      <div className="hidden flex-grow justify-center lg:flex">
         <ul className="flex items-center gap-8 font-kalam text-xl text-white 2xl:-ml-48">
           {navigationItems.slice(0, middleIndex).map((item, index) => (
             <li
@@ -67,15 +90,43 @@ export const Navbar = () => {
         </ul>
       </div>
 
-      <div>
-        <CartButton onClick={() => {
-          setshowModal(true);
-        }} />
+      {isMenuOpen && (
+        <div className="absolute left-0 top-[100px] w-full bg-red-600 px-4 py-4 lg:hidden">
+          <ul className="flex flex-col gap-4 font-kalam text-xl text-white">
+            {navigationItems.map((item, index) => (
+              <li
+                key={index}
+                className="cursor-pointer transition duration-200 hover:text-black"
+              >
+                <Link href={item.link} onClick={() => setIsMenuOpen(false)}>
+                  {item.title}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
+
+      <div className="lg:hidden">
+        <Link href="/">
+          <Image
+            src="/img/logo.png"
+            alt="logo"
+            width={120}
+            height={52}
+            className="cursor-pointer transition hover:scale-110"
+          />
+        </Link>
       </div>
-      {/* <Suspense fallback={<OpenCart />}>
-          <Cart />
-        </Suspense> */}
-        {showModal && <CartModal />}
+
+      <div>
+        <CartButton
+          onClick={() => {
+            setshowModal(!showModal);
+          }}
+        />
+      </div>
+      {showModal && <CartModal />}
     </div>
   );
 };

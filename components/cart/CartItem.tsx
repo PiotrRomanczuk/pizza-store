@@ -1,4 +1,4 @@
-import { ICartItem } from "@/interfaces/CartItem";
+import { ICartItem } from "@/interfaces/ICartItem";
 import Image from "next/image";
 interface CartItemProps {
   item: ICartItem;

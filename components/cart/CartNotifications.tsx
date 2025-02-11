@@ -1,5 +1,5 @@
 // notifications.js
-import { ICartItem } from "@/context/CartActions";
+import { ICartItem } from "@/interfaces/ICartItem";
 import { toast } from "react-toastify";
 
 export const notifyRemovedFromCart = (item: ICartItem) =>

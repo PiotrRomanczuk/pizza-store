@@ -1,16 +1,25 @@
 "use client";
 
 import { useTransition, useContext } from "react";
-import { CartContext } from "../../context/CartProvider";
+import { CartContext } from "@/context/CartProvider";
+import { IProduct } from "@/interfaces/IProduct";
+import { ICartItem } from "@/interfaces/ICartItem";
 
-export default function AddToCart() {
+interface AddToCartProps {
+  product: ICartItem;
+}
+
+export default function AddToCart({ product }: AddToCartProps) {
   const [isPending, startTransition] = useTransition();
 
   const { cartItems, addToCart } = useContext(CartContext);
 
   const handleAddToCartButton = () => {
     startTransition(() => {
-      () => addToCart(product);
+      console.log(product);
+      console.log(cartItems);
+      addToCart(product);
+      console.log(cartItems);
     });
   };
   return (

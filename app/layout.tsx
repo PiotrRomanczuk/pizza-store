@@ -6,8 +6,8 @@ import { CartProvider } from "@/context/CartProvider";
 
 import "./globals.css";
 
-import { Navbar } from "@/components/UI/Navbar";
-import { Footer } from "@/components/UI/Footer";
+import { Navbar } from "@/components/UI/Layout/Navbar";
+import { Footer } from "@/components/UI/Layout/Footer";
 
 const inter = Inter({
   subsets: ["latin"],

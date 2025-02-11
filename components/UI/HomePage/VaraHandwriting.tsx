@@ -25,7 +25,7 @@ export const VaraHandwriting = ({
         },
       ],
     );
-  }, []);
+  }, [divID, fontSize, text]);
 
   return <div id={divID} className="z-[20]"></div>;
 };

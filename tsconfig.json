@@ -27,7 +27,7 @@
     "**/*.ts",
     "**/*.tsx",
     ".next/types/**/*.ts",
-    "components/UI/FooterNav.js"
+    "components/UI/Layout/FooterNav.js"
   ],
   "exclude": ["node_modules"]
 }

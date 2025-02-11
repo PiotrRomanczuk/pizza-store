@@ -3,7 +3,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { Suspense, useState } from "react";
-import CartButton from "../cart/CartButton";
+import CartButton from "@/components/Cart/CartButton";
 
 export const Navbar = () => {
   const navigationItems = [

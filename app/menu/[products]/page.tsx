@@ -1,7 +1,6 @@
 "use client";
 
-import { Products } from "../Products";
-
+import { DummyProducts } from "../DummyProducts";
 import { useParams } from "next/navigation";
 
 export default function Home() {
@@ -9,7 +8,7 @@ export default function Home() {
 
   console.log(productName);
 
-  const product = Products.find(
+  const product = DummyProducts.find(
     (p) => p.nameLowerCase === productName.products,
   );
 

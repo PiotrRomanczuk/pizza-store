@@ -1,9 +1,9 @@
 import { useContext } from "react";
 
 import { CartItem } from "./CartItem";
-import { ICartItem } from "../../interfaces/CartItem";
+import { ICartItem } from "@/interfaces/ICartItem";
 
-import { CartContext } from "../../context/CartProvider";
+import { CartContext } from "@/context/CartProvider";
 
 import { notifyCartCleared, notifyRemovedFromCart } from "./CartNotifications";
 import { ToastContainer } from "react-toastify";

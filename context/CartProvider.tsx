@@ -1,7 +1,7 @@
 "use client";
 
 import { createContext, useState, useEffect, ReactNode } from "react";
-import { ICartItem } from "@/interfaces/CartItem";
+import { ICartItem } from "@/interfaces/ICartItem";
 import {
   addToCartAction,
   clearCartAction,
@@ -30,11 +30,15 @@ interface CartProviderProps {
 }
 
 export const CartProvider: React.FC<CartProviderProps> = ({ children }) => {
-  const [cartItems, setCartItems] = useState<ICartItem[]>(
-    localStorage.getItem("cartItems")
-      ? JSON.parse(localStorage.getItem("cartItems")!)
-      : [],
-  );
+  const [cartItems, setCartItems] = useState<ICartItem[]>([]);
+
+  // Initialize cart items from localStorage on client-side only
+  useEffect(() => {
+    const savedCartItems = localStorage.getItem("cartItems");
+    if (savedCartItems) {
+      setCartItems(JSON.parse(savedCartItems));
+    }
+  }, []);
 
   const addToCart = (item: ICartItem) =>
     addToCartAction(item, cartItems, setCartItems);
@@ -52,13 +56,6 @@ export const CartProvider: React.FC<CartProviderProps> = ({ children }) => {
       localStorage.setItem("cartItems", JSON.stringify(cartItems));
     }
   }, [cartItems]);
-
-  useEffect(() => {
-    const cartItemsString = localStorage.getItem("cartItems");
-    if (cartItemsString) {
-      setCartItems(JSON.parse(cartItemsString)!);
-    }
-  }, []);
 
   return (
     <CartContext.Provider

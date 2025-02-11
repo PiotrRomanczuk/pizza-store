@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { VaraHandwriting } from "./VaraHandwriting";
+import { VaraHandwriting } from "@/components/UI/HomePage/VaraHandwriting";
 import { motion } from "framer-motion";
 
 export const Gallery = () => {

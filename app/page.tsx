@@ -1,20 +1,23 @@
-import { HeroSection } from "@/components/UI/HeroSection";
-import { About } from "@/components/UI/About";
-import { Places } from "@/components/UI/Places";
-import { Gallery } from "../components/UI/Gallery";
+import { HeroSection } from "@/components/UI/HomePage/HeroSection";
+import { About } from "@/components/UI/HomePage/About";
+import { Places } from "@/components/UI/HomePage/Places";
+import { Gallery } from "../components/UI/HomePage/Gallery";
 
-import { FadingComponent } from "@/components/FadingComponent";
+import { FadingComponent } from "@/components/UI/HomePage/FadingComponent";
 
-const components = [HeroSection, About, Places, Gallery];
+const componentsToFaide: React.ElementType[] = [HeroSection, About, Places, Gallery];
 
 export default function Home() {
   return (
     <main>
-      {components.map((Component, index) => (
-        <FadingComponent key={index}>
-          <Component />
-        </FadingComponent>
-      ))}
+      {componentsToFaide.map((Component, index) => {
+        const ComponentElement = Component as React.ElementType;
+        return (
+          <FadingComponent key={index}>
+            <ComponentElement />
+          </FadingComponent>
+        );
+      })}
     </main>
   );
 }

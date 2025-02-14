@@ -10,16 +10,16 @@ export const Places = () => {
             <h2 className="text-4xl font-bold mb-6">About us</h2>
             <div className="space-y-4">
               <p className="text-lg text-gray-700 leading-relaxed">
-                Our team is driven by a deep passion for crafting the perfect pizza. Every member, from our skilled pizzaiolos to our welcoming staff, shares a love for authentic Italian flavors and a dedication to excellence. We don't just make pizza—we create an experience, pouring our heart and soul into every dough we knead, every sauce we simmer, and every topping we carefully select.
+                Our team is driven by a deep passion for crafting the perfect pizza. Every member, from our skilled pizzaiolos to our welcoming staff, shares a love for authentic Italian flavors and a dedication to excellence. We don&apos;t just make pizza—we create an experience, pouring our heart and soul into every dough we knead, every sauce we simmer, and every topping we carefully select.
               </p>
               <p className="text-lg text-gray-700 leading-relaxed">
                 Behind each pizza is a story of craftsmanship, patience, and tradition. Our team works tirelessly to ensure that every slice reflects the rich heritage of Italian cuisine. We source the finest ingredients, from hand-picked basil to creamy mozzarella, and use time-honored techniques to bring out the best flavors.
               </p>
               <p className="text-lg text-gray-700 leading-relaxed">
-                For us, pizza-making is an art. From the crackling crust of a wood-fired pie to the perfect balance of tangy tomato and melted cheese, every detail matters. It's not just about feeding people—it's about creating moments of joy, bringing friends and families together over a meal that's made with love.
+                For us, pizza-making is an art. From the crackling crust of a wood-fired pie to the perfect balance of tangy tomato and melted cheese, every detail matters. It&apos;s not just about feeding people—it&apos;s about creating moments of joy, bringing friends and families together over a meal that&apos;s made with love.
               </p>
               <p className="text-lg text-gray-700 leading-relaxed">
-                This is more than a job for us—it's a calling. With every pizza we serve, we share a piece of our passion, ensuring that every guest leaves with a satisfied heart and a taste of something truly special.
+                This is more than a job for us—it&apos;s a calling. With every pizza we serve, we share a piece of our passion, ensuring that every guest leaves with a satisfied heart and a taste of something truly special.
               </p>
             </div>
           </div>

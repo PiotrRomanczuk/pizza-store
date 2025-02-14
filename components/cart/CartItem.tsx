@@ -14,7 +14,7 @@ export const CartItem: React.FC<CartItemProps> = ({
   <div className="flex items-center justify-between" key={item.id}>
     <div className="flex gap-4">
       <Image
-        src={item.img}
+        src={item.imgSrc}
         alt={item.name || ""}
         className="h-24 w-24 rounded-md"
       />

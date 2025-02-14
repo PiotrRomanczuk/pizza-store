@@ -5,12 +5,22 @@ import { DummyProducts } from "./DummyProducts";
 import { IProduct } from "@/interfaces/IProduct";
 import { ProductCard } from "./ProductCard";
 import { CartContext } from "@/context/CartProvider";
+import { Pagination } from "./Pagination";
 
 
 
 export default function Page() {
   const [products, setProducts] = useState<IProduct[]>([]);
+  const [currentPage, setCurrentPage] = useState(1);
   const { cartItems, addToCart, removeFromCart } = useContext(CartContext);
+
+  const productsPerPage = 12;
+  const totalPages = Math.ceil(products.length / productsPerPage);
+  
+  // Get current products for pagination
+  const indexOfLastProduct = currentPage * productsPerPage;
+  const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
+  const currentProducts = products.slice(indexOfFirstProduct, indexOfLastProduct);
 
   // console.log(cartItems);
 
@@ -21,6 +31,11 @@ export default function Page() {
   useEffect(() => {
     getProducts();
   }, []);
+
+  const handlePageChange = (pageNumber: number) => {
+    setCurrentPage(pageNumber);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -35,7 +50,7 @@ export default function Page() {
       {/* Products Grid Section */}
       <div className="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
         <div className="grid gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
-          {products.map((product) => (
+          {currentProducts.map((product) => (
             <ProductCard
               key={product.id}
               product={product}
@@ -45,6 +60,15 @@ export default function Page() {
             />
           ))}
         </div>
+
+        {/* Pagination Controls */}
+        {totalPages > 1 && (
+          <Pagination
+            currentPage={currentPage}
+            totalPages={totalPages}
+            onPageChange={handlePageChange}
+          />
+        )}
       </div>
     </div>
   );

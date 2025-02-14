@@ -2,7 +2,7 @@ import { NextResponse } from 'next/server'
 import Stripe from 'stripe'
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
-  apiVersion: '2023-10-16',
+  apiVersion: '2025-01-27.acacia',
 })
 
 export async function POST(request: Request) {
@@ -15,11 +15,8 @@ export async function POST(request: Request) {
         currency: 'usd',
         product_data: {
           name: item.name,
-          // Add images if available
-          // images: [item.image],
         },
-        unit_amount: Math.round(item.price * 100), // Stripe expects amounts in cents
-      },
+        unit_amount: Math.round(item.price * 100), },
       quantity: item.quantity,
     }))
 
@@ -30,7 +27,7 @@ export async function POST(request: Request) {
       success_url: `${process.env.NEXT_PUBLIC_BASE_URL}/order-confirmation?session_id={CHECKOUT_SESSION_ID}`,
       cancel_url: `${process.env.NEXT_PUBLIC_BASE_URL}/cart`,
       shipping_address_collection: {
-        allowed_countries: ['US', 'CA', 'GB'], // Adjust as needed
+        allowed_countries: ['US', 'CA', 'GB'], 
       },
       shipping_options: [
         {

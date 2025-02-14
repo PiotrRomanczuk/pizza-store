@@ -9,7 +9,8 @@ export const ProductDisplay: React.FC<IProductDisplay> = ({ product }) => {
         alt={product.name}
         width={192}
         height={192}
-        className="h-48 rounded-md object-cover"
+        className="h-48 rounded-md "
+        
       />
 
       <div className="mt-4">

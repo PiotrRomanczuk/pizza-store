@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { Suspense, useState } from "react";
+import {  useState } from "react";
 import CartButton from "@/components/Cart/CartButton";
 import CartModal from "@/components/Cart/CartModal";
 
@@ -72,9 +72,9 @@ export const Navbar = () => {
           ))}
           <Link href={"/"}>
             <Image
-              src="/img/logo.png"
+              src="/logo_transparent.png"
               alt="logo"
-              width={160}
+              width={300}
               height={69}
               className="cursor-pointer transition hover:scale-110"
             />
@@ -110,10 +110,10 @@ export const Navbar = () => {
       <div className="lg:hidden">
         <Link href="/">
           <Image
-            src="/img/logo.png"
+            src="/logo_transparent.png"
             alt="logo"
-            width={120}
-            height={52}
+            width={300}
+            height={69}
             className="cursor-pointer transition hover:scale-110"
           />
         </Link>
@@ -126,7 +126,7 @@ export const Navbar = () => {
           }}
         />
       </div>
-      {showModal && <CartModal />}
+      {showModal && <CartModal showModal={showModal} toggle={() => setshowModal(!showModal)} />}
     </div>
   );
 };

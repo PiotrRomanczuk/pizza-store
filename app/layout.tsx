@@ -32,10 +32,12 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={`${inter.className} ${kalam.className}`}>
+      <body className={`${inter.className} ${kalam.className} min-h-screen flex flex-col`}>
         <CartProvider>
           <Navbar />
-          {children}
+          <main className="flex-grow">
+            {children}
+          </main>
           <Footer />
         </CartProvider>
       </body>

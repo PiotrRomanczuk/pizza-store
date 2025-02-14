@@ -2,87 +2,14 @@
 
 import { useContext, useState } from 'react'
 import { CartContext } from "@/context/CartProvider"
-import { useRouter } from 'next/navigation'
-import { CartItem } from '../types/cart'
-
-// Types
-type FormData = {
-  name: string
-  email: string
-  address: string
-  city: string
-  zipCode: string
-  country: string
-}
-
-// Form field configuration
-const formFields = [
-  { id: 'name', label: 'Full Name', type: 'text' },
-  { id: 'email', label: 'Email', type: 'email' },
-  { id: 'address', label: 'Address', type: 'text' },
-  { id: 'city', label: 'City', type: 'text', halfWidth: true },
-  { id: 'zipCode', label: 'ZIP Code', type: 'text', halfWidth: true },
-  { id: 'country', label: 'Country', type: 'text' },
-] as const
-
-// Reusable form input component
-const FormInput = ({ 
-  id, 
-  label, 
-  type, 
-  value, 
-  onChange 
-}: {
-  id: keyof FormData
-  label: string
-  type: string
-  value: string
-  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void
-}) => (
-  <div>
-    <label htmlFor={id} className="block text-sm font-medium text-gray-700">
-      {label}
-    </label>
-    <input
-      type={type}
-      id={id}
-      name={id}
-      required
-      value={value}
-      onChange={onChange}
-      className="mt-1 block w-full rounded border-gray-300 shadow-sm focus:border-gray-500 focus:ring-gray-500"
-    />
-  </div>
-)
-
-// Order summary component
-const OrderSummary = ({ cartItems, totalQuantity, totalPrice }: { cartItems: CartItem[], totalQuantity: number, totalPrice: number }) => (
-  <div className="bg-gray-50 p-6 rounded-lg">
-    <h2 className="text-xl font-semibold mb-4">Order Summary</h2>
-    <ul className="space-y-4">
-      {cartItems.map((item) => (
-        <li key={item.id} className="flex justify-between">
-          <span>{item.name} x {item.quantity}</span>
-          <span>${(item.price * (item.quantity || 0)).toFixed(2)}</span>
-        </li>
-      ))}
-    </ul>
-    <div className="border-t mt-4 pt-4">
-      <div className="flex justify-between font-semibold">
-        <span>Total Items:</span>
-        <span>{totalQuantity}</span>
-      </div>
-      <div className="flex justify-between font-semibold text-lg mt-2">
-        <span>Total Price:</span>
-        <span>${totalPrice.toFixed(2)}</span>
-      </div>
-    </div>
-  </div>
-)
+import { FormInput } from '@/app/components/cart/FormInput'
+import { OrderSummary } from '@/app/components/cart/OrderSummary'
+import { EmptyCart } from '@/app/components/cart/EmptyCart'
+import { FormData, formFields } from '@/app/types/cart'
 
 export default function CartOrder() {
   const { cartItems, clearCart } = useContext(CartContext)
-  const router = useRouter()
+  const [isLoading, setIsLoading] = useState(false)
   const [formData, setFormData] = useState<FormData>({
     name: '',
     email: '',
@@ -106,63 +33,94 @@ export default function CartOrder() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    // Here you would typically send the order to your backend
-    console.log('Order submitted:', { items: cartItems, shipping: formData })
-    clearCart()
-    router.push('/order-confirmation')
+    setIsLoading(true)
+
+    try {
+      const response = await fetch('/api/create-checkout-session', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          items: cartItems,
+          shipping: formData,
+        }),
+      })
+
+      const { url } = await response.json()
+      
+      if (url) {
+        clearCart()
+        window.location.href = url
+      }
+    } catch (error) {
+      console.error('Error creating checkout session:', error)
+    } finally {
+      setIsLoading(false)
+    }
   }
 
   if (cartItems.length === 0) {
-    return (
-      <div className="min-h-screen flex items-center justify-center">
-        <div className="text-center">
-          <h2 className="text-2xl font-bold mb-4">Your cart is empty</h2>
-          <button
-            onClick={() => router.push('/')}
-            className="text-white bg-gray-800 hover:bg-gray-700 px-6 py-2 rounded"
-          >
-            Return to Shop
-          </button>
-        </div>
-      </div>
-    )
+    return <EmptyCart />
   }
 
   return (
-    <div className="max-w-7xl mx-auto px-4 py-8">
-      <h1 className="text-3xl font-bold mb-8">Checkout</h1>
-      
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-        <OrderSummary 
-          cartItems={cartItems}
-          totalQuantity={totalQuantity}
-          totalPrice={totalPrice}
-        />
-
-        <form onSubmit={handleSubmit} className="space-y-4">
-          <h2 className="text-xl font-semibold mb-4">Shipping Information</h2>
-          
-          <div className="grid gap-4">
-            {formFields.map(({ id, label, type }) => (
-              <div key={id} className="col-span-2">
-                <FormInput
-                  id={id}
-                  label={label}
-                  type={type}
-                  value={formData[id]}
-                  onChange={handleInputChange}
-                />
-              </div>
-            ))}
+    <div className="min-h-screen bg-gray-50 py-12">
+      <div className="max-w-7xl mx-auto px-4">
+        <h1 className="text-3xl font-bold mb-8 text-center">Checkout</h1>
+        
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+          <div className="order-2 lg:order-1">
+            <OrderSummary 
+              cartItems={cartItems.map(item => ({...item, id: item.id.toString()}))}
+              totalQuantity={totalQuantity}
+              totalPrice={totalPrice}
+            />
           </div>
 
-          <button
-            type="submit"
-            className="w-full bg-gray-800 text-white py-3 px-6 rounded hover:bg-gray-700 mt-6"
-          >
-            Place Order
-          </button>
-        </form>
+          <div className="order-1 lg:order-2">
+            <form onSubmit={handleSubmit} className="bg-white p-8 rounded-xl shadow-sm">
+              <h2 className="text-2xl font-semibold mb-6">Shipping Information</h2>
+              
+              <div className="grid gap-6">
+                {formFields.map(({ id, label, type }) => (
+                  <div key={id} className="col-span-2">
+                    <FormInput
+                      id={id}
+                      label={label}
+                      type={type}
+                      value={formData[id]}
+                      onChange={handleInputChange}
+                    />
+                  </div>
+                ))}
+              </div>
+
+              <button
+                type="submit"
+                disabled={isLoading}
+                className="w-full mt-8 bg-gray-800 text-white py-4 px-6 rounded-lg hover:bg-gray-700 transition-colors duration-200 disabled:bg-gray-400 disabled:cursor-not-allowed flex items-center justify-center space-x-2"
+              >
+                {isLoading ? (
+                  <>
+                    <svg className="animate-spin h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                      <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                      <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                    </svg>
+                    <span>Processing...</span>
+                  </>
+                ) : (
+                  <>
+                    <span>Proceed to Payment</span>
+                    <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                      <path fillRule="evenodd" d="M12.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-2.293-2.293a1 1 0 010-1.414z" clipRule="evenodd" />
+                    </svg>
+                  </>
+                )}
+              </button>
+            </form>
+          </div>
+        </div>
       </div>
     </div>
   )

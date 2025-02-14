@@ -6,24 +6,24 @@ import { motion } from "framer-motion";
 
 export const Gallery = () => {
   return (
-    <div className="mt-6 h-screen">
-      <div className="mx-auto grid h-5/6 w-4/5 grid-cols-2 grid-rows-3 gap-4 md:grid-cols-3 md:grid-rows-4">
+    <div className="mt-6 bg-neutral-50 py-12">
+      <div className="mx-auto grid h-[800px] w-11/12 grid-cols-2 grid-rows-3 gap-6 md:grid-cols-3 md:grid-rows-4">
         <motion.div
-          className="relative row-span-1 bg-indigo-100 md:row-span-2"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.5 }}
+          className="relative row-span-1 overflow-hidden rounded-2xl bg-indigo-100 shadow-lg transition-transform hover:scale-[1.02] md:row-span-2"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, ease: "easeOut" }}
         >
           <Image
             src="/unSplash/mainPage/DoughMaking1.jpg"
-            alt="Cooked Food"
+            alt="Pizza dough making process"
             fill
-            layout=""
-            objectFit="cover"
+            className="object-cover"
+            sizes="(max-width: 768px) 100vw, 33vw"
           />
         </motion.div>
         <motion.div
-          className="relative col-span-1 bg-red-100 md:col-span-2"
+          className="relative col-span-1 overflow-hidden rounded-2xl bg-red-100 shadow-lg transition-transform hover:scale-[1.02] md:col-span-2"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.5 }}
@@ -36,15 +36,15 @@ export const Gallery = () => {
             objectFit="cover"
           />
         </motion.div>
-        <div className="flex items-center justify-center bg-red-700 text-center">
+        <div className="flex items-center justify-center overflow-hidden rounded-2xl bg-red-700 text-center shadow-lg transition-transform hover:scale-[1.02]">
           <VaraHandwriting
-            text="We are here for you !"
-            fontSize={52}
+            text="We are here for you!"
+            fontSize={44}
             divID="vara-container-1"
           />
         </div>
         <motion.div
-          className="relative row-span-1 bg-violet-100 md:row-span-2"
+          className="relative row-span-1 overflow-hidden rounded-2xl bg-violet-100 shadow-lg transition-transform hover:scale-[1.02] md:row-span-2"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.5 }}
@@ -58,7 +58,7 @@ export const Gallery = () => {
           />
         </motion.div>
         <motion.div
-          className="relative col-span-1 row-span-1 bg-sky-100 md:col-span-2 md:row-span-2"
+          className="relative col-span-1 row-span-1 overflow-hidden rounded-2xl bg-sky-100 shadow-lg transition-transform hover:scale-[1.02] md:col-span-2 md:row-span-2"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.5 }}
@@ -72,7 +72,7 @@ export const Gallery = () => {
           />
         </motion.div>
         <motion.div
-          className="relative bg-emerald-100"
+          className="relative overflow-hidden rounded-2xl bg-emerald-100 shadow-lg transition-transform hover:scale-[1.02]"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.5 }}

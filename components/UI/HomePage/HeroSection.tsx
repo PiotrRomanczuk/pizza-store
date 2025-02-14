@@ -19,7 +19,7 @@ export const HeroSection = () => {
         duration: 5,
       }}
     >
-      <div className="flex h-screen items-center justify-center">
+      <div className="flex h-[50vh] md:h-screen items-center justify-center">
         <div className="relative h-full w-full">
           <Image
             src="/unSplash/mainPage/CookedFood.jpg"

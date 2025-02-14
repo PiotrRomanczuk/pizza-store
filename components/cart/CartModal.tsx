@@ -99,7 +99,7 @@ export default function CartModal({ showModal, toggle }: CartProps) {
                     </div>
                     <div className="mt-6">
                       <a
-                        href="/CartOrder"
+                        href="/cartOrder"
                         className="flex items-center justify-center rounded-md border border-transparent bg-gray-800 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-gray-700"
                       >
                         Proceed to Checkout

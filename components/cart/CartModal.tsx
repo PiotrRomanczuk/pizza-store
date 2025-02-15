@@ -1,9 +1,13 @@
-'use client'
+"use client";
 
-import { useContext } from 'react'
-import { Dialog, DialogBackdrop, DialogPanel, DialogTitle } from '@headlessui/react'
-import { CartContext } from "@/context/CartProvider"
-import { ICartItem } from "@/interfaces/ICartItem"
+import { useContext } from "react";
+import {
+  Dialog,
+  DialogBackdrop,
+  DialogPanel,
+  DialogTitle,
+} from "@headlessui/react";
+import { CartContext } from "@/context/CartProvider";
 
 interface CartProps {
   showModal: boolean;
@@ -11,17 +15,23 @@ interface CartProps {
 }
 
 export default function CartModal({ showModal, toggle }: CartProps) {
-  const { cartItems, addToCart, removeFromCart } = useContext(CartContext)
+  const { cartItems, addToCart, removeFromCart } = useContext(CartContext);
 
   // Calculate totals
-  const totalQuantity = cartItems.reduce((sum, item) => sum + (item.quantity || 0), 0);
-  const totalPrice = cartItems.reduce((sum, item) => sum + (item.price * (item.quantity || 0)), 0);
+  const totalQuantity = cartItems.reduce(
+    (sum, item) => sum + (item.quantity || 0),
+    0,
+  );
+  const totalPrice = cartItems.reduce(
+    (sum, item) => sum + item.price * (item.quantity || 0),
+    0,
+  );
 
   return (
     <Dialog open={showModal} onClose={toggle} className="relative z-[100]">
       <DialogBackdrop
         transition
-        className="fixed inset-0 bg-gray-500/75 transition-opacity duration-500 ease-in-out data-closed:opacity-0"
+        className="data-closed:opacity-0 fixed inset-0 bg-gray-500/75 transition-opacity duration-500 ease-in-out"
       />
 
       <div className="fixed inset-0 overflow-hidden">
@@ -29,12 +39,14 @@ export default function CartModal({ showModal, toggle }: CartProps) {
           <div className="pointer-events-none fixed inset-y-0 right-0 flex max-w-full pl-10">
             <DialogPanel
               transition
-              className="pointer-events-auto w-screen max-w-md transform transition duration-500 ease-in-out data-closed:translate-x-full sm:duration-700"
+              className="data-closed:translate-x-full pointer-events-auto w-screen max-w-md transform transition duration-500 ease-in-out sm:duration-700"
             >
               <div className="flex h-full flex-col overflow-y-scroll bg-white shadow-xl">
                 <div className="flex-1 overflow-y-auto px-4 py-6 sm:px-6">
                   <div className="flex items-start justify-between">
-                    <DialogTitle className="text-lg font-medium text-gray-900">Shopping cart</DialogTitle>
+                    <DialogTitle className="text-lg font-medium text-gray-900">
+                      Shopping cart
+                    </DialogTitle>
                     <div className="ml-3 flex h-7 items-center">
                       <button
                         type="button"
@@ -49,34 +61,44 @@ export default function CartModal({ showModal, toggle }: CartProps) {
 
                   <div className="mt-8">
                     {cartItems.length === 0 ? (
-                      <p className="text-gray-500 text-center">Your cart is empty</p>
+                      <p className="text-center text-gray-500">
+                        Your cart is empty
+                      </p>
                     ) : (
                       <div className="flow-root">
-                        <ul role="list" className="-my-6 divide-y divide-gray-200">
+                        <ul
+                          role="list"
+                          className="-my-6 divide-y divide-gray-200"
+                        >
                           {cartItems.map((item) => (
-                            <li key={item.id} className="flex py-6 items-center justify-between gap-2">
+                            <li
+                              key={item.id}
+                              className="flex items-center justify-between gap-2 py-6"
+                            >
                               <div>
-                                <h3 className="text-base font-medium text-gray-900">{item.name}</h3>
-                                <p className="mt-1 text-sm text-gray-500">${item.price}</p>
+                                <h3 className="text-base font-medium text-gray-900">
+                                  {item.name}
+                                </h3>
+                                <p className="mt-1 text-sm text-gray-500">
+                                  ${item.price}
+                                </p>
                               </div>
 
                               <div className="flex items-center gap-4">
-                                <button
-                                  onClick={() => addToCart(item)}
-                                  className="rounded bg-gray-800 px-4 py-2 text-xs font-bold uppercase text-white hover:bg-gray-700 focus:bg-gray-700 focus:outline-none"
-                                >
-                                  +
-                                </button>
-
-                                <p className="text-gray-600 min-w-[20px] text-center">
-                                  {item.quantity || 0}
-                                </p>
-
                                 <button
                                   onClick={() => removeFromCart(item)}
                                   className="rounded bg-gray-800 px-4 py-2 text-xs font-bold uppercase text-white hover:bg-gray-700 focus:bg-gray-700 focus:outline-none"
                                 >
                                   -
+                                </button>
+                                <p className="min-w-[20px] text-center text-gray-600">
+                                  {item.quantity || 0}
+                                </p>
+                                <button
+                                  onClick={() => addToCart(item)}
+                                  className="rounded bg-gray-800 px-4 py-2 text-xs font-bold uppercase text-white hover:bg-gray-700 focus:bg-gray-700 focus:outline-none"
+                                >
+                                  +
                                 </button>
                               </div>
                             </li>
@@ -113,5 +135,5 @@ export default function CartModal({ showModal, toggle }: CartProps) {
         </div>
       </div>
     </Dialog>
-  )
+  );
 }

@@ -2,9 +2,9 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import {  useState } from "react";
-import CartButton from "@/components/Cart/CartButton";
-import CartModal from "@/components/Cart/CartModal";
+import { useState } from "react";
+import CartButton from "@/components/cart/CartButton";
+import CartModal from "@/components/cart/CartModal";
 
 export const Navbar = () => {
   const navigationItems = [
@@ -126,7 +126,12 @@ export const Navbar = () => {
           }}
         />
       </div>
-      {showModal && <CartModal showModal={showModal} toggle={() => setshowModal(!showModal)} />}
+      {showModal && (
+        <CartModal
+          showModal={showModal}
+          toggle={() => setshowModal(!showModal)}
+        />
+      )}
     </div>
   );
 };

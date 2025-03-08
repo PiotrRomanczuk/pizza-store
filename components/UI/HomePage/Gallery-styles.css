@@ -1,0 +1,8 @@
+.hover-scale {
+  @apply transition-transform hover:scale-[1.02];
+}
+
+.hover-scale-md {
+  @apply transition-transform hover:scale-[1.02] md:col-span-2 md:row-span-2;
+}
+
